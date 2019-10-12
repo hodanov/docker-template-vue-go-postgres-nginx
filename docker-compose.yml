@@ -6,12 +6,21 @@ services:
     build:
       context: .
       dockerfile: web.dockerfile
-      args:
-          - VUE_APP_HOST=$VUE_APP_HOST
     ports:
       - $WEB_PORT:8080
-        #     depends_on: 
-        #       - api
+    depends_on: 
+      - api
     tty: true
     volumes:
       - ./web:/app
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    ports:
+      - $API_PORT:8081
+    tty: true
+    volumes:
+      - ./api:/go/app
