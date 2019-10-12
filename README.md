@@ -31,6 +31,13 @@ To use the environment, clone the repo and execute `docker-compose up`.
 docker-compose up -d
 ```
 
+After launching containers, access the `localhost:80`.
+
+Nginx acts as a reverse proxy, passing Vue or Go containers.
+
+![proxy-image](./architect-vue-go-postgres-nginx.jpg "proxy image")
+
+
 Thank you.
 
 ## Author
