@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: web.dockerfile
-    ports:
-      - $WEB_PORT:8080
     depends_on: 
       - api
     tty: true
@@ -19,8 +17,35 @@ services:
     build:
       context: .
       dockerfile: api.dockerfile
-    ports:
-      - $API_PORT:8081
+      args:
+        - POSTGRES_DB=$POSTGRES_DB
+        - POSTGRES_USER=$POSTGRES_USER
+        - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+        - POSTGRES_PORT=$POSTGRES_PORT
+    depends_on: 
+      - db
     tty: true
     volumes:
       - ./api:/go/app
+
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: db.dockerfile
+      args:
+        - POSTGRES_DB=$POSTGRES_DB
+        - POSTGRES_USER=$POSTGRES_USER
+        - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+  proxy:
+    container_name: proxy
+    build:
+      context: .
+      dockerfile: proxy.dockerfile
+    ports:
+      - $PROXY_PORT:$PROXY_PORT
+    depends_on:
+      - web
