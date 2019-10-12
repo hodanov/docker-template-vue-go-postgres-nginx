@@ -10,7 +10,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleRequests() {
-	http.HandleFunc("/", hello)
+	http.HandleFunc("/api/hello/", hello)
 	http.ListenAndServe(":8081", nil)
 }
 
