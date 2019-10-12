@@ -14,6 +14,8 @@ This is using the following technologies:
   - Vue CLI
   - Vuex
   - Vue Router
+- Go
+  - realize
 
 ## Requirements
 
