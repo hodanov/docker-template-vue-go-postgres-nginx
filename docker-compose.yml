@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: web.dockerfile
+      args:
+          - VUE_APP_HOST=$VUE_APP_HOST
+    ports:
+      - $WEB_PORT:8080
+        #     depends_on: 
+        #       - api
+    tty: true
+    volumes:
+      - ./web:/app
