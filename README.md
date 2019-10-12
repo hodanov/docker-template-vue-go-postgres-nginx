@@ -5,11 +5,10 @@ This is the dev-environment for Vue.js, Go, Postgres and Nginx on docker.
 This is using the following technologies:
 
 - Environments
-  - Docker
-  - Docker Compose
   - node:8.16-alpine
   - golang:1.13-alpine
-  - postgres:
+  - postgres:12-alpine
+  - nginx:1.17-alpine
 - Node.js
   - Vue CLI
   - Vuex
