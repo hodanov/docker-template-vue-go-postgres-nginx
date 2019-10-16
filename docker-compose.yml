@@ -49,3 +49,5 @@ services:
       - $PROXY_PORT:$PROXY_PORT
     depends_on:
       - web
+    volumes:
+      - ./proxy:/app
